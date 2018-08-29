@@ -38,8 +38,14 @@ namespace FridgeShop
             salling_cb_fridges.SelectedIndexChanged += Salling_cb_fridges_SelectedIndexChanged;
             selling_frigo_quantity.KeyPress += Selling_frigo_quantity_KeyPress;
             selling_frigo_quantity.KeyUp += Selling_frigo_quantity_KeyUp;
+            selling_add_button.Click += Selling_add_button_Click;
 
             GetFridges();
+        }
+
+        private void Selling_add_button_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void Selling_frigo_quantity_KeyUp(object sender, KeyEventArgs e)
@@ -124,12 +130,14 @@ namespace FridgeShop
                 selling_frigo_quantity.Text = "0";
                 selling_frigo_quantity.Focus();
                 GetFridgoInfo(salling_cb_fridges.SelectedItem.ToString());
+                selling_add_button.Enabled = true;
             }
             else
             {
                 selling_frigo_quantity.Enabled = false;
                 selling_frigo_quantity.Text = "";
                 selling_frigo_info.Text = "";
+                selling_add_button.Enabled = false;
             }
             //ShowMessage(salling_cb_fridges.SelectedItem.ToString());
         }
@@ -181,7 +189,8 @@ namespace FridgeShop
             string mark = markModel.Substring(0, index);
             string model = markModel.Substring(index + 3, strLength - (index + 3));
 
-            string sql = $"SELECT * FROM fridges WHERE mark = '{mark}' AND model = '{model}';" ;
+            string sql = $"SELECT * FROM fridges JOIN storage as stor ON fridges.id = stor.id_fridge " +
+                $"WHERE mark = '{mark}' AND model = '{model}';" ;
 
             try
             {

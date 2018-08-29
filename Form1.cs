@@ -42,7 +42,11 @@ namespace FridgeShop
         private void Main_form_createBtn_Click(object sender, EventArgs e)
         {
             Selling sellingForm = new Selling(dbLink);
-            sellingForm.ShowDialog();
+
+            if (sellingForm.ShowDialog() == DialogResult.OK)
+            {
+                GetCashVouchers();
+            }
         }
 
         /// <summary>

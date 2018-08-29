@@ -34,13 +34,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.selling_frigo_quantity = new System.Windows.Forms.TextBox();
             this.salling_cb_fridges = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.selling_buyers = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.selling_sellers = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.selling_cansel_btn = new System.Windows.Forms.Button();
+            this.selling_create_btn = new System.Windows.Forms.Button();
             this.selling_lb_total = new System.Windows.Forms.Label();
             this.selling_check_info = new System.Windows.Forms.Label();
             this.salling_gb_frego.SuspendLayout();
@@ -113,16 +113,17 @@
             this.salling_cb_fridges.Size = new System.Drawing.Size(260, 28);
             this.salling_cb_fridges.TabIndex = 0;
             // 
-            // comboBox2
+            // selling_buyers
             // 
-            this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.selling_buyers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(172, 69);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(320, 28);
-            this.comboBox2.TabIndex = 12;
+            this.selling_buyers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.selling_buyers.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.selling_buyers.FormattingEnabled = true;
+            this.selling_buyers.Location = new System.Drawing.Point(172, 69);
+            this.selling_buyers.Name = "selling_buyers";
+            this.selling_buyers.Size = new System.Drawing.Size(320, 28);
+            this.selling_buyers.TabIndex = 12;
             // 
             // label3
             // 
@@ -144,16 +145,17 @@
             this.label2.TabIndex = 10;
             this.label2.Text = "Продавец";
             // 
-            // comboBox1
+            // selling_sellers
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.selling_sellers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(172, 17);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(320, 28);
-            this.comboBox1.TabIndex = 9;
+            this.selling_sellers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.selling_sellers.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.selling_sellers.FormattingEnabled = true;
+            this.selling_sellers.Location = new System.Drawing.Point(172, 17);
+            this.selling_sellers.Name = "selling_sellers";
+            this.selling_sellers.Size = new System.Drawing.Size(320, 28);
+            this.selling_sellers.TabIndex = 9;
             // 
             // groupBox1
             // 
@@ -169,27 +171,27 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Товары в чеке";
             // 
-            // button1
+            // selling_cansel_btn
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(32, 513);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 35);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Отмена";
-            this.button1.UseVisualStyleBackColor = true;
+            this.selling_cansel_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.selling_cansel_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.selling_cansel_btn.Location = new System.Drawing.Point(32, 513);
+            this.selling_cansel_btn.Name = "selling_cansel_btn";
+            this.selling_cansel_btn.Size = new System.Drawing.Size(98, 35);
+            this.selling_cansel_btn.TabIndex = 15;
+            this.selling_cansel_btn.Text = "Отмена";
+            this.selling_cansel_btn.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // selling_create_btn
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(397, 513);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 35);
-            this.button2.TabIndex = 16;
-            this.button2.Text = "Продажа";
-            this.button2.UseVisualStyleBackColor = true;
+            this.selling_create_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.selling_create_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.selling_create_btn.Location = new System.Drawing.Point(397, 513);
+            this.selling_create_btn.Name = "selling_create_btn";
+            this.selling_create_btn.Size = new System.Drawing.Size(98, 35);
+            this.selling_create_btn.TabIndex = 16;
+            this.selling_create_btn.Text = "Продажа";
+            this.selling_create_btn.UseVisualStyleBackColor = true;
             // 
             // selling_lb_total
             // 
@@ -220,14 +222,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(529, 569);
             this.Controls.Add(this.selling_lb_total);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.selling_create_btn);
+            this.Controls.Add(this.selling_cansel_btn);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.salling_gb_frego);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.selling_buyers);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.selling_sellers);
             this.Name = "Selling";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Selling";
@@ -244,17 +246,17 @@
 
         private System.Windows.Forms.GroupBox salling_gb_frego;
         private System.Windows.Forms.ComboBox salling_cb_fridges;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox selling_buyers;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox selling_sellers;
         private System.Windows.Forms.Label selling_frigo_info;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox selling_frigo_quantity;
         private System.Windows.Forms.Button selling_add_button;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button selling_cansel_btn;
+        private System.Windows.Forms.Button selling_create_btn;
         private System.Windows.Forms.Label selling_lb_total;
         private System.Windows.Forms.Label selling_check_info;
     }

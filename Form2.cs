@@ -46,8 +46,98 @@ namespace FridgeShop
             selling_frigo_quantity.KeyPress += Selling_frigo_quantity_KeyPress;
             selling_frigo_quantity.KeyUp += Selling_frigo_quantity_KeyUp;
             selling_add_button.Click += Selling_add_button_Click;
+            selling_cansel_btn.Click += Selling_cansel_btn_Click;
+            selling_create_btn.Click += Selling_create_btn_Click;
 
+            GetSellersFio();
+            GetBuyersFio();
             GetFridges();
+        }
+
+        /// <summary>
+        /// Продажа холодильников
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Selling_create_btn_Click(object sender, EventArgs e)
+        {
+            if (selling_sellers.SelectedIndex == -1)
+            {
+                ShowMessage("Вы не выбрали продавца");
+            }
+            else if (selling_buyers.SelectedIndex == -1)
+            {
+                ShowMessage("Вы не выбрали покупателя");
+            }
+            else if (check.Count == 0)
+            {
+                ShowMessage("Вы не выбрали холодильник для покупки");
+            }
+            else
+            {
+                int seller_id;
+                int buyer_id;
+
+                seller_id = GetSellerId(selling_sellers.SelectedItem.ToString());
+               
+                if (seller_id != -1)
+                {
+                    buyer_id = GetBuyerId(selling_buyers.SelectedItem.ToString());
+
+                    if (buyer_id != -1)
+                    {
+                        string sql = $"INSERT INTO cash_voucher VALUES ({seller_id}, {buyer_id}, GETDATE())";
+
+                        SqlTransaction transaction = null;
+
+                        try
+                        {
+                            conn.Open();
+
+                            transaction = conn.BeginTransaction();
+
+                            SqlCommand comm = conn.CreateCommand();
+                            comm.Transaction = transaction;
+
+                            comm.CommandText = sql;
+                            comm.ExecuteNonQuery();
+                            transaction.Commit();
+                            conn.Close();
+
+                            SaveCheckItems();
+
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            ShowMessage(ex.Message);
+                            transaction.Rollback();
+                        }
+
+                        conn?.Close();
+                    }
+                    else
+                    {
+                        ShowMessage("Покупатель не найден!\nПродажа невозможна!");
+                    }
+                }
+                else
+                {
+                    ShowMessage("Продавец не найден!\nПродажа невозможна!");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Отмена
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Selling_cansel_btn_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
 
         /// <summary>
@@ -285,6 +375,225 @@ namespace FridgeShop
             conn?.Close();
         }
 
+        private void GetSellersFio()
+        {
+            string sql = "SELECT fio FROM sallers";
 
+            try
+            {
+                ds = new DataSet();
+                conn.Open();
+                adapter = new SqlDataAdapter(sql, conn);
+
+                cmd = new SqlCommandBuilder(adapter);
+                adapter.Fill(ds, "sellers");
+
+                DataRowCollection rows = ds.Tables["sellers"].Rows;
+
+                foreach (DataRow row in rows)
+                {
+                    selling_sellers.Items.Add($"{row[0].ToString()}");
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(ex.Message);
+            }
+
+            conn?.Close();
+        }
+
+        private void GetBuyersFio()
+        {
+            string sql = "SELECT fio FROM buyers";
+
+            try
+            {
+                ds = new DataSet();
+                conn.Open();
+                adapter = new SqlDataAdapter(sql, conn);
+
+                cmd = new SqlCommandBuilder(adapter);
+                adapter.Fill(ds, "buyers");
+
+                DataRowCollection rows = ds.Tables["buyers"].Rows;
+
+                foreach (DataRow row in rows)
+                {
+                    selling_buyers.Items.Add($"{row[0].ToString()}");
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(ex.Message);
+            }
+
+            conn?.Close();
+        }
+
+        /// <summary>
+        /// Get seller id by fio
+        /// </summary>
+        /// <param name="fio"></param>
+        /// <returns></returns>
+        private int GetSellerId(string fio)
+        {
+            int id = -1;
+            string sql = $"SELECT id FROM sallers WHERE fio = '{fio}'";
+
+            try
+            {
+                ds = new DataSet();
+                conn.Open();
+                adapter = new SqlDataAdapter(sql, conn);
+
+                cmd = new SqlCommandBuilder(adapter);
+                adapter.Fill(ds, "sallers");
+
+                DataRowCollection rows = ds.Tables["sallers"].Rows;
+
+                id = Convert.ToInt16(rows[0][0]);
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(ex.Message);
+            }
+
+            conn?.Close();
+
+            return id;
+        }
+
+        /// <summary>
+        /// Get seller id by fio
+        /// </summary>
+        /// <param name="fio"></param>
+        /// <returns></returns>
+        private int GetBuyerId(string fio)
+        {
+            int id = -1;
+            string sql = $"SELECT id FROM buyers WHERE fio = '{fio}'";
+
+            try
+            {
+                ds = new DataSet();
+                conn.Open();
+                adapter = new SqlDataAdapter(sql, conn);
+
+                cmd = new SqlCommandBuilder(adapter);
+                adapter.Fill(ds, "buyers");
+
+                DataRowCollection rows = ds.Tables["buyers"].Rows;
+
+                id = Convert.ToInt16(rows[0][0]);
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(ex.Message);
+            }
+
+            conn?.Close();
+
+            return id;
+        }
+
+        /// <summary>
+        /// Save check item
+        /// </summary>
+        private void SaveCheckItems()
+        {
+            int checkId = -1;
+
+            string sql = $"SELECT TOP 1 * FROM cash_voucher ORDER BY id DESC";
+
+            try
+            {
+                ds = new DataSet();
+                conn.Open();
+                adapter = new SqlDataAdapter(sql, conn);
+
+                cmd = new SqlCommandBuilder(adapter);
+                adapter.Fill(ds, "check");
+
+                DataRowCollection rows = ds.Tables["check"].Rows;
+
+                checkId = Convert.ToInt16(rows[0][0]);
+
+                conn?.Close();
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(ex.Message);
+            }
+
+            if (checkId != -1)
+            {
+                foreach (Fridge item in check)
+                {
+                    AddItemsToTable(checkId, item);
+                }
+            }
+            
+        }
+
+        private void AddItemsToTable(int checkId, Fridge f)
+        {
+            string sql = $"INSERT INTO cash_voucer_item VALUES ({checkId}, {f.Id}, {f.Quantity})";
+
+            SqlTransaction transaction = null;
+
+            try
+            {
+                conn.Open();
+
+                transaction = conn.BeginTransaction();
+
+                SqlCommand comm = conn.CreateCommand();
+                comm.Transaction = transaction;
+
+                comm.CommandText = sql;
+                comm.ExecuteNonQuery();
+                transaction.Commit();
+                conn.Close();
+
+                UpdateStorageInfo(f);
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(ex.Message);
+                transaction.Rollback();
+            }
+
+            conn?.Close();
+        }
+
+        private void UpdateStorageInfo(Fridge f)
+        {
+            string sql = $"UPDATE storage SET quantity = quantity - {f.Quantity} WHERE id_fridge = {f.Id};";
+            
+            SqlTransaction transaction = null;
+
+            try
+            {
+                conn.Open();
+
+                transaction = conn.BeginTransaction();
+
+                SqlCommand comm = conn.CreateCommand();
+                comm.Transaction = transaction;
+
+                comm.CommandText = sql;
+                comm.ExecuteNonQuery();
+                transaction.Commit();
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(ex.Message);
+                transaction.Rollback();
+            }
+
+            conn?.Close();
+        }
     }
 }

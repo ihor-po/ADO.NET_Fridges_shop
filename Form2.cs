@@ -18,6 +18,9 @@ namespace FridgeShop
         private SqlDataAdapter adapter;
         private DataSet ds;
         private SqlCommandBuilder cmd;
+        private Dictionary<string, string> check;
+        private Fridge fridge;
+        private double total;
 
         public Selling(string conString)
         {
@@ -32,6 +35,7 @@ namespace FridgeShop
         private void Selling_Load(object sender, EventArgs e)
         {
             conn = new SqlConnection(dbLink);
+            total = 0;
 
             selling_frigo_info.Text = "";
 
@@ -43,11 +47,25 @@ namespace FridgeShop
             GetFridges();
         }
 
+        /// <summary>
+        /// Доавление товара в чек
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Selling_add_button_Click(object sender, EventArgs e)
         {
-            
+            int quantity = Convert.ToInt16(selling_frigo_quantity.Text);
+            if (quantity > fridge.Quantity)
+            {
+                ShowMessage("Выбранная Вами модель,\nв нужном количестве\nотсутсвует на складе!");
+            }
         }
 
+        /// <summary>
+        /// Обработка нажатия кнопки вверх в поле количество
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Selling_frigo_quantity_KeyUp(object sender, KeyEventArgs e)
         {
             string text = selling_frigo_quantity.Text;
@@ -63,11 +81,8 @@ namespace FridgeShop
                 number = 0;
             }
             
-
             if (e.KeyCode == Keys.Back)
             {
-               
-
                 if (text.Length == 1)
                 {
                     selling_frigo_quantity.Text = "";
@@ -105,6 +120,11 @@ namespace FridgeShop
             selling_frigo_quantity.SelectionStart = textLength;
         }
 
+        /// <summary>
+        /// Обработка нажатия кнопок
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Selling_frigo_quantity_KeyPress(object sender, KeyPressEventArgs e)
         {
             char key = e.KeyChar;
@@ -182,6 +202,10 @@ namespace FridgeShop
             MessageBox.Show(msg, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        /// <summary>
+        /// Get Fridgo info
+        /// </summary>
+        /// <param name="markModel"></param>
         private void GetFridgoInfo(string markModel)
         {
             int index = markModel.IndexOf("   ");
@@ -189,9 +213,13 @@ namespace FridgeShop
             string mark = markModel.Substring(0, index);
             string model = markModel.Substring(index + 3, strLength - (index + 3));
 
-            string sql = $"SELECT * FROM fridges JOIN storage as stor ON fridges.id = stor.id_fridge " +
+            string sql = $"SELECT " +
+                $"fridges.id as 'Id', fridges.mark as 'Mark', fridges.model as 'Model', fridges.artikle as 'Artikle', " +
+                $"fridges.price as 'Price', stor.quantity as 'Quantity' " +
+                $"FROM fridges " +
+                $"JOIN storage as stor ON stor.id_fridge = fridges.id " +
                 $"WHERE mark = '{mark}' AND model = '{model}';" ;
-
+            ShowMessage(sql);
             try
             {
                 ds = new DataSet();
@@ -203,7 +231,19 @@ namespace FridgeShop
                 adapter.Fill(ds, "fre");
                 DataRowCollection fRows = ds.Tables["fre"].Rows;
 
-                selling_frigo_info.Text = $"\t\t {fRows[0][0]}   {fRows[0][1]}   {fRows[0][2]}   {fRows[0][3]}    {fRows[0][4]}\n";
+                fridge = new Fridge();
+
+                fridge.Id = Convert.ToInt16(fRows[0][0]);
+                fridge.Mark = fRows[0][1].ToString();
+                fridge.Model = fRows[0][2].ToString();
+                fridge.Artikle = fRows[0][3].ToString();
+                fridge.Price = Convert.ToDouble(fRows[0][4]);
+                fridge.Quantity = Convert.ToInt16(fRows[0][5]);
+
+                selling_frigo_info.Text = $"\t\tМарка холодильника:\t{fridge.Mark}\n" +
+                    $"\t\tМодель холодильника: {fridge.Model}\n" +
+                    $"\t\tЦена холодильника: {fridge.Price}\n" +
+                    $"\t\tОстаток на складе: {fridge.Quantity}";
 
             }
             catch (Exception ex)

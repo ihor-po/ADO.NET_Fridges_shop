@@ -57,7 +57,7 @@
             this.salling_gb_frego.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.salling_gb_frego.Location = new System.Drawing.Point(34, 121);
             this.salling_gb_frego.Name = "salling_gb_frego";
-            this.salling_gb_frego.Size = new System.Drawing.Size(460, 164);
+            this.salling_gb_frego.Size = new System.Drawing.Size(460, 196);
             this.salling_gb_frego.TabIndex = 13;
             this.salling_gb_frego.TabStop = false;
             this.salling_gb_frego.Text = "Холодильники";
@@ -159,9 +159,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox1.Location = new System.Drawing.Point(34, 305);
+            this.groupBox1.Location = new System.Drawing.Point(34, 342);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(460, 131);
+            this.groupBox1.Size = new System.Drawing.Size(460, 142);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Товары в чеке";
@@ -170,7 +170,7 @@
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(32, 465);
+            this.button1.Location = new System.Drawing.Point(32, 513);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(98, 35);
             this.button1.TabIndex = 15;
@@ -181,7 +181,7 @@
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(397, 465);
+            this.button2.Location = new System.Drawing.Point(397, 513);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(98, 35);
             this.button2.TabIndex = 16;
@@ -194,7 +194,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.selling_lb_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 32F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.selling_lb_total.ForeColor = System.Drawing.Color.Red;
-            this.selling_lb_total.Location = new System.Drawing.Point(148, 448);
+            this.selling_lb_total.Location = new System.Drawing.Point(148, 496);
             this.selling_lb_total.Name = "selling_lb_total";
             this.selling_lb_total.Size = new System.Drawing.Size(243, 52);
             this.selling_lb_total.TabIndex = 17;
@@ -205,7 +205,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(529, 521);
+            this.ClientSize = new System.Drawing.Size(529, 569);
             this.Controls.Add(this.selling_lb_total);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);

@@ -29,20 +29,22 @@
         private void InitializeComponent()
         {
             this.salling_gb_frego = new System.Windows.Forms.GroupBox();
+            this.selling_add_button = new System.Windows.Forms.Button();
+            this.selling_frigo_info = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.selling_frigo_quantity = new System.Windows.Forms.TextBox();
+            this.salling_cb_fridges = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.salling_cb_fridges = new System.Windows.Forms.ComboBox();
-            this.selling_frigo_quantity = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.selling_frigo_info = new System.Windows.Forms.Label();
-            this.selling_add_button = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.selling_lb_total = new System.Windows.Forms.Label();
+            this.selling_check_info = new System.Windows.Forms.Label();
             this.salling_gb_frego.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // salling_gb_frego
@@ -61,6 +63,55 @@
             this.salling_gb_frego.TabIndex = 13;
             this.salling_gb_frego.TabStop = false;
             this.salling_gb_frego.Text = "Холодильники";
+            // 
+            // selling_add_button
+            // 
+            this.selling_add_button.Enabled = false;
+            this.selling_add_button.Location = new System.Drawing.Point(6, 63);
+            this.selling_add_button.Name = "selling_add_button";
+            this.selling_add_button.Size = new System.Drawing.Size(157, 31);
+            this.selling_add_button.TabIndex = 4;
+            this.selling_add_button.Text = "Добавить в чек";
+            this.selling_add_button.UseVisualStyleBackColor = true;
+            // 
+            // selling_frigo_info
+            // 
+            this.selling_frigo_info.AutoSize = true;
+            this.selling_frigo_info.Location = new System.Drawing.Point(3, 102);
+            this.selling_frigo_info.Name = "selling_frigo_info";
+            this.selling_frigo_info.Size = new System.Drawing.Size(51, 20);
+            this.selling_frigo_info.TabIndex = 3;
+            this.selling_frigo_info.Text = "label4";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(283, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 20);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Количество";
+            // 
+            // selling_frigo_quantity
+            // 
+            this.selling_frigo_quantity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.selling_frigo_quantity.Enabled = false;
+            this.selling_frigo_quantity.Location = new System.Drawing.Point(397, 25);
+            this.selling_frigo_quantity.Name = "selling_frigo_quantity";
+            this.selling_frigo_quantity.Size = new System.Drawing.Size(57, 26);
+            this.selling_frigo_quantity.TabIndex = 1;
+            // 
+            // salling_cb_fridges
+            // 
+            this.salling_cb_fridges.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.salling_cb_fridges.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.salling_cb_fridges.FormattingEnabled = true;
+            this.salling_cb_fridges.Location = new System.Drawing.Point(6, 25);
+            this.salling_cb_fridges.Name = "salling_cb_fridges";
+            this.salling_cb_fridges.Size = new System.Drawing.Size(260, 28);
+            this.salling_cb_fridges.TabIndex = 0;
             // 
             // comboBox2
             // 
@@ -104,60 +155,12 @@
             this.comboBox1.Size = new System.Drawing.Size(320, 28);
             this.comboBox1.TabIndex = 9;
             // 
-            // salling_cb_fridges
-            // 
-            this.salling_cb_fridges.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.salling_cb_fridges.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.salling_cb_fridges.FormattingEnabled = true;
-            this.salling_cb_fridges.Location = new System.Drawing.Point(6, 25);
-            this.salling_cb_fridges.Name = "salling_cb_fridges";
-            this.salling_cb_fridges.Size = new System.Drawing.Size(260, 28);
-            this.salling_cb_fridges.TabIndex = 0;
-            // 
-            // selling_frigo_quantity
-            // 
-            this.selling_frigo_quantity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.selling_frigo_quantity.Enabled = false;
-            this.selling_frigo_quantity.Location = new System.Drawing.Point(397, 25);
-            this.selling_frigo_quantity.Name = "selling_frigo_quantity";
-            this.selling_frigo_quantity.Size = new System.Drawing.Size(57, 26);
-            this.selling_frigo_quantity.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(283, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 20);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Количество";
-            // 
-            // selling_frigo_info
-            // 
-            this.selling_frigo_info.AutoSize = true;
-            this.selling_frigo_info.Location = new System.Drawing.Point(3, 102);
-            this.selling_frigo_info.Name = "selling_frigo_info";
-            this.selling_frigo_info.Size = new System.Drawing.Size(51, 20);
-            this.selling_frigo_info.TabIndex = 3;
-            this.selling_frigo_info.Text = "label4";
-            // 
-            // selling_add_button
-            // 
-            this.selling_add_button.Enabled = false;
-            this.selling_add_button.Location = new System.Drawing.Point(6, 63);
-            this.selling_add_button.Name = "selling_add_button";
-            this.selling_add_button.Size = new System.Drawing.Size(157, 31);
-            this.selling_add_button.TabIndex = 4;
-            this.selling_add_button.Text = "Добавить в чек";
-            this.selling_add_button.UseVisualStyleBackColor = true;
-            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.selling_check_info);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(34, 342);
             this.groupBox1.Name = "groupBox1";
@@ -201,6 +204,16 @@
             this.selling_lb_total.Text = "0.00";
             this.selling_lb_total.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // selling_check_info
+            // 
+            this.selling_check_info.AutoSize = true;
+            this.selling_check_info.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.selling_check_info.Location = new System.Drawing.Point(7, 26);
+            this.selling_check_info.Name = "selling_check_info";
+            this.selling_check_info.Size = new System.Drawing.Size(46, 17);
+            this.selling_check_info.TabIndex = 0;
+            this.selling_check_info.Text = "label4";
+            // 
             // Selling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -220,6 +233,8 @@
             this.Text = "Selling";
             this.salling_gb_frego.ResumeLayout(false);
             this.salling_gb_frego.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -241,5 +256,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label selling_lb_total;
+        private System.Windows.Forms.Label selling_check_info;
     }
 }

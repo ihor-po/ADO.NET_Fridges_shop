@@ -18,7 +18,7 @@ namespace FridgeShop
         private SqlDataAdapter adapter;
         private DataSet ds;
         private SqlCommandBuilder cmd;
-        private Dictionary<string, string> check;
+        private List<Fridge> check;
         private Fridge fridge;
         private double total;
 
@@ -37,7 +37,10 @@ namespace FridgeShop
             conn = new SqlConnection(dbLink);
             total = 0;
 
+            check = new List<Fridge>();
+
             selling_frigo_info.Text = "";
+            selling_check_info.Text = "";
 
             salling_cb_fridges.SelectedIndexChanged += Salling_cb_fridges_SelectedIndexChanged;
             selling_frigo_quantity.KeyPress += Selling_frigo_quantity_KeyPress;
@@ -54,10 +57,38 @@ namespace FridgeShop
         /// <param name="e"></param>
         private void Selling_add_button_Click(object sender, EventArgs e)
         {
-            int quantity = Convert.ToInt16(selling_frigo_quantity.Text);
-            if (quantity > fridge.Quantity)
+            int quantity;
+
+            if (selling_frigo_quantity.Text != "")
+            {
+                quantity = Convert.ToInt16(selling_frigo_quantity.Text);
+            }
+            else
+            {
+                quantity = 0;
+            }
+
+            if (quantity == 0)
+            {
+                ShowMessage("Вы не ввели количестово для покупки!");
+            }
+            else if (quantity > fridge.Quantity)
             {
                 ShowMessage("Выбранная Вами модель,\nв нужном количестве\nотсутсвует на складе!");
+            }
+            else
+            {
+                fridge.Quantity = quantity;
+                total += quantity * fridge.Price;
+                check.Add(fridge);
+                selling_check_info.Text += $"A   {fridge.Artikle}                    {fridge.Quantity} x {fridge.Price}\n" +
+                    $"{fridge.Mark}   {fridge.Model}   Total: {fridge.Quantity * fridge.Price}\n";
+                selling_lb_total.Text = total.ToString();
+                salling_cb_fridges.Items.Remove(salling_cb_fridges.SelectedItem);
+                selling_frigo_info.Text = "";
+                selling_frigo_quantity.Text = "0";
+                selling_frigo_quantity.Enabled = false;
+                selling_add_button.Enabled = false;
             }
         }
 
@@ -83,9 +114,9 @@ namespace FridgeShop
             
             if (e.KeyCode == Keys.Back)
             {
-                if (text.Length == 1)
+                if (text.Length == 1 || text.Length == 0)
                 {
-                    selling_frigo_quantity.Text = "";
+                    selling_frigo_quantity.Text = "0";
                 }
                 else
                 {
@@ -219,7 +250,7 @@ namespace FridgeShop
                 $"FROM fridges " +
                 $"JOIN storage as stor ON stor.id_fridge = fridges.id " +
                 $"WHERE mark = '{mark}' AND model = '{model}';" ;
-            ShowMessage(sql);
+            
             try
             {
                 ds = new DataSet();

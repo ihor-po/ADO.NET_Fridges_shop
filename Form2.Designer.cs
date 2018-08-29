@@ -94,6 +94,7 @@
             // 
             // salling_cb_fridges
             // 
+            this.salling_cb_fridges.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.salling_cb_fridges.FormattingEnabled = true;
             this.salling_cb_fridges.Location = new System.Drawing.Point(6, 25);
             this.salling_cb_fridges.Name = "salling_cb_fridges";
@@ -137,6 +138,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBox1);
             this.Name = "Selling";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Selling";
             this.salling_gb_frego.ResumeLayout(false);
             this.salling_gb_frego.PerformLayout();

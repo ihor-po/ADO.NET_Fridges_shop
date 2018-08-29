@@ -31,10 +31,100 @@ namespace FridgeShop
 
         private void Selling_Load(object sender, EventArgs e)
         {
-          
             conn = new SqlConnection(dbLink);
 
+            selling_frigo_info.Text = "";
+
+            salling_cb_fridges.SelectedIndexChanged += Salling_cb_fridges_SelectedIndexChanged;
+            selling_frigo_quantity.KeyPress += Selling_frigo_quantity_KeyPress;
+            selling_frigo_quantity.KeyUp += Selling_frigo_quantity_KeyUp;
+
             GetFridges();
+        }
+
+        private void Selling_frigo_quantity_KeyUp(object sender, KeyEventArgs e)
+        {
+            string text = selling_frigo_quantity.Text;
+            int textLength = text.Length;
+            int number;
+
+            if (text != "")
+            {
+                number = Convert.ToInt16(text);
+            }
+            else
+            {
+                number = 0;
+            }
+            
+
+            if (e.KeyCode == Keys.Back)
+            {
+               
+
+                if (text.Length == 1)
+                {
+                    selling_frigo_quantity.Text = "";
+                }
+                else
+                {
+                    selling_frigo_quantity.Text = text.Substring(0, --textLength);
+                }
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                if (text != "")
+                {
+                    selling_frigo_quantity.Text = (++number).ToString();
+                }
+                else
+                {
+                    selling_frigo_quantity.Text = "0";
+                }
+                
+            }
+            else if (e.KeyCode == Keys.Down)
+            {
+                
+                if (number > 0)
+                {
+                    selling_frigo_quantity.Text = (--number).ToString();
+                }
+                else
+                {
+                    selling_frigo_quantity.Text = "0";
+                }
+
+            }
+            selling_frigo_quantity.SelectionStart = textLength;
+        }
+
+        private void Selling_frigo_quantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char key = e.KeyChar;
+
+            //Для проверки ввода только цифр
+
+            if (!Char.IsDigit(key))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void Salling_cb_fridges_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (salling_cb_fridges.SelectedItem.ToString() != "")
+            {
+                selling_frigo_quantity.Enabled = true;
+                selling_frigo_quantity.Text = "0";
+                selling_frigo_quantity.Focus();
+            }
+            else
+            {
+                selling_frigo_quantity.Enabled = false;
+                selling_frigo_quantity.Text = "";
+            }
+            //ShowMessage(salling_cb_fridges.SelectedItem.ToString());
         }
 
         /// <summary>
@@ -60,7 +150,7 @@ namespace FridgeShop
                     salling_cb_fridges.Items.Add(row[0].ToString() + "   " + row[1].ToString());
                 }
 
-
+          
             }
             catch (Exception ex)
             {
